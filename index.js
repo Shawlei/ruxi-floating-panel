@@ -16,14 +16,14 @@
     return;
   }
 
-  // 启动即声明为悬浮窗形态；失败静默，不阻断面板渲染
+  // 启动即声明为悬浮球（小白点）形态；失败静默，不阻断面板渲染
   try {
-    API.setPanelMode('floating');
+    API.setPanelMode('bubble');
   } catch (err) {
     /* 静默 */
   }
 
-  // 可选：记录 enabled 标志（形态本身由主项目决定，这里仅做声明 + 提供切换入口）
+  // 记录 enabled 标志（形态本身由主项目决定，这里仅做声明 + 提供切换入口）
   try {
     if (extension_settings && typeof extension_settings === 'object') {
       extension_settings.enabled = true;
@@ -66,14 +66,14 @@
   }
 
   var card = el('div', 'floating-panel-card');
-  var title = el('h3', null, '悬浮窗面板已启用');
-  var desc = el('p', null, '扩展面板将以悬浮窗浮在对话界面，可在标题栏拖动、位置自动记忆。');
-  var btnFloating = el('button', 'btn', '切换到悬浮窗');
+  var title = el('h3', null, '悬浮球面板已启用');
+  var desc = el('p', null, '屏幕边缘会显示一个小白点，点击即可弹出扩展面板；拖动白点可贴靠左右边缘，位置自动记忆。');
+  var btnBubble = el('button', 'btn', '切换到悬浮球');
   var btnDefault = el('button', 'btn', '切回默认面板');
   var result = el('p', 'result', '');
 
-  btnFloating.onclick = function () {
-    applyMode('floating', '已切换到悬浮窗', '切换到悬浮窗失败');
+  btnBubble.onclick = function () {
+    applyMode('bubble', '已切换到悬浮球', '切换到悬浮球失败');
   };
 
   btnDefault.onclick = function () {
@@ -82,7 +82,7 @@
 
   card.appendChild(title);
   card.appendChild(desc);
-  card.appendChild(btnFloating);
+  card.appendChild(btnBubble);
   card.appendChild(btnDefault);
   card.appendChild(result);
   document.body.appendChild(card);

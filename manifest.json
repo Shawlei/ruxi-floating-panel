@@ -1,7 +1,7 @@
 {
-  "name": "悬浮窗面板",
+  "name": "悬浮球面板",
   "version": "1.0.0",
   "js": "index.js",
-  "description": "启用后把入戏扩展面板切换为可拖动悬浮窗形态，提供悬浮窗/默认面板的切换入口。",
-  "author": "ruxi-floating-panel"
+  "description": "启用后在屏幕边缘显示一个辅助触控式小白点，点击弹出扩展面板；拖动白点可贴靠左右边缘。",
+  "author": "Ruxi"
 }

@@ -52,7 +52,7 @@ const setPanelMode = (mode) => {
   calls.push(mode);
   return Promise.resolve();
 };
-const getPanelMode = () => 'floating';
+const getPanelMode = () => 'bubble';
 
 const window = {
   __ruxiRequire(name) {
@@ -77,8 +77,8 @@ function collectButtons(node, acc) {
 }
 
 async function main() {
-  // ① 启动即调用 setPanelMode('floating')
-  assert.strictEqual(calls[0], 'floating', '启动应调用 setPanelMode("floating")');
+  // ① 启动即调用 setPanelMode('bubble')
+  assert.strictEqual(calls[0], 'bubble', '启动应调用 setPanelMode("bubble")');
   assert.strictEqual(calls.length, 1, '启动阶段应只调用一次 setPanelMode');
 
   // extension_settings.enabled 被置位
@@ -91,12 +91,12 @@ async function main() {
   // ② 两个按钮回调
   const buttons = collectButtons(document.body, []);
   assert.strictEqual(buttons.length, 2, '应恰好渲染两个按钮');
-  assert.strictEqual(buttons[0].textContent, '切换到悬浮窗');
+  assert.strictEqual(buttons[0].textContent, '切换到悬浮球');
   assert.strictEqual(buttons[1].textContent, '切回默认面板');
 
-  // 点第一个按钮 -> setPanelMode('floating')
+  // 点第一个按钮 -> setPanelMode('bubble')
   buttons[0].click();
-  assert.strictEqual(calls[calls.length - 1], 'floating', '按钮1应调用 setPanelMode("floating")');
+  assert.strictEqual(calls[calls.length - 1], 'bubble', '按钮1应调用 setPanelMode("bubble")');
 
   // 点第二个按钮 -> setPanelMode('default')
   buttons[1].click();
@@ -109,8 +109,8 @@ async function main() {
   assert.match(resultNode.textContent, /切回默认面板/, '结果提示应反映切回默认面板');
 
   console.log('PASS: 所有断言通过');
-  console.log('  - 启动调用 setPanelMode("floating")');
-  console.log('  - 按钮1 -> setPanelMode("floating")');
+  console.log('  - 启动调用 setPanelMode("bubble")');
+  console.log('  - 按钮1 -> setPanelMode("bubble")');
   console.log('  - 按钮2 -> setPanelMode("default")');
   console.log('  - 调用序列:', JSON.stringify(calls));
 }
